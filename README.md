@@ -69,3 +69,52 @@ deducciones(0.08). % Salud y pensión
 bonificacion(auxiliar, 0.05).
 bonificacion(asociado, 0.10).
 bonificacion(titular, 0.15).
+```
+
+### Instrucciones de uso
+
+1. **Instalación de dependencias**:  
+   Para instalar las dependencias necesarias, ejecuta el siguiente comando en tu terminal:
+   ```bash
+   pip install fastapi pydantic pyswip
+2. **iInstalar un servidor ASGI para ejecutar FastAPI:**:  
+   El servidor mas comun es uvicorn
+   ```bash
+   pip install uvicorn
+3. **Ejecutar el main.py para iniciar el servidor**:  
+   Una vez instaladas las dependencias  se debe ejecutar el main.py   
+   El servidor se iniciar en la URL http://127.0.0.1:8000/docs
+4. **Usos de la API**  
+   - POST /agregar_docente/: Agrega un nuevo docente a la base de datos.
+   - POST /calculo_nomina/: Calcula el salario neto de un docente.
+   - DELETE /eliminar_docente/: Elimina un docente de la base de datos.
+   - GET /verificar_docente/{nombre}: Verifica si un docente existe en la base de datos.
+5. **Ejemplos de solicitudes**:
+
+   - **Agregar docente**:
+     ```json
+     {
+       "nombre": "juan",
+       "categoria": "auxiliar"
+     }
+     ```
+
+   - **Calcular salario**:
+     ```json
+     {
+       "nombre": "juan"
+     }
+     ```
+
+   - **Eliminar docente**:
+     ```json
+     {
+       "nombre": "juan"
+     }
+     ```
+
+   - **Verificar docente**:
+     ```http
+     GET "juan"
+     ```
+
