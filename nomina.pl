@@ -54,6 +54,11 @@ docente_existe(NombreDocente) :-
     docente(NombreDocente, _).
 
 % Eliminar un docente
-eliminar_docente(NombreDocente) :-
-    retract(docente(NombreDocente, _)).
+% Eliminar un docente
+eliminar_docente(NombreOriginal) :-
+    normalizar_nombre(NombreOriginal, NombreNormalizado),
+    (   retract(docente(NombreNormalizado, _))
+    ->  true
+    ;   format('Error: El docente ~w no existe.~n', [NombreNormalizado])
+    ).
 
