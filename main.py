@@ -66,13 +66,19 @@ def calculo_nomina(docente: Docente):
 def eliminar_docente(docente: Docente):
     nombre_docente = docente.nombre.lower()
     try:
-        prolog.consult("nomina.pl")  
-        if not list(prolog.query(f"docente_existe({nombre_docente})")):
+        prolog.consult("nomina.pl")  # Recargar Prolog
+        consulta_verificacion = f"docente_existe({nombre_docente})"
+        consulta_eliminacion = f"eliminar_docente({nombre_docente})"
+        print(f"Consulta verificación: {consulta_verificacion}")
+        print(f"Consulta eliminación: {consulta_eliminacion}")
+        
+        if not list(prolog.query(consulta_verificacion)):
             raise HTTPException(
                 status_code=404, 
                 detail=f"Docente '{nombre_docente}' no encontrado."
             )
-        prolog.query(f"eliminar_docente({nombre_docente})")
+        
+        prolog.query(consulta_eliminacion)
         return {"message": f"Docente '{nombre_docente}' eliminado exitosamente."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al eliminar el docente: {e}")
