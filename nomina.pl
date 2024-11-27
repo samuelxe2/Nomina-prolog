@@ -53,7 +53,7 @@ salario_neto(NombreDocente, SalarioNeto) :-
 docente_existe(NombreDocente) :-
     docente(NombreDocente, _).
 
-% Eliminar un docente
+
 % Eliminar un docente
 eliminar_docente(NombreOriginal) :-
     normalizar_nombre(NombreOriginal, NombreNormalizado),
